@@ -1,0 +1,10 @@
+.DS_Store
+**/.ash_history
+**/log
+**/.data
+tasks/projects.sql
+node_modules
+npm-debug.log
+.env
+yarn-debug.log
+yarn-error.log
