@@ -1,26 +1,26 @@
 version: "3"
 services:
   tasks:
-      build: ./tasks
-      volumes:
-        - ./tasks:/root
-        - ./tasks/log:/var/log
-      environment:
-        - ASANA_ACCESS_TOKEN=${ASANA_ACCESS_TOKEN}
-        - ASANA_PROJECT_GID=${ASANA_PROJECT_GID}
-        - ASANA_CUSTOM_FIELD_GID=${ASANA_CUSTOM_FIELD_GID}
-      networks:
-        - postgres
+    build: ./tasks
+    volumes:
+      - ./tasks:/root
+      - ./tasks/log:/var/log
+    environment:
+      - ASANA_ACCESS_TOKEN=${ASANA_ACCESS_TOKEN}
+      - ASANA_PROJECT_GID=${ASANA_PROJECT_GID}
+      - ASANA_CUSTOM_FIELD_GID=${ASANA_CUSTOM_FIELD_GID}
+    networks:
+      - postgres
   postgres:
-      build: ./postgres
-      volumes:
-        - ./postgres/.data:/var/lib/postgresql/data
-      networks:
-        - postgres
-      environment:
-        - PGPASSWORD=${POSTGRES_PASSWORD}
-      ports:
-        - 5431:5432
+    build: ./postgres
+    volumes:
+      - ./postgres/.data:/var/lib/postgresql/data
+    networks:
+      - postgres
+    environment:
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5431:5432
 
 networks:
   postgres:

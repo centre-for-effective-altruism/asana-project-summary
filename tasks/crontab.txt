@@ -1,1 +1,1 @@
-*/10 * * * * /root/gettasks.sh >> /var/log/gettasks.log
+* * * * * /root/gettasks.sh >> /var/log/gettasks.log
