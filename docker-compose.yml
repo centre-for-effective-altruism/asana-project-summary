@@ -20,7 +20,7 @@ services:
     environment:
       - PGPASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - 5431:5432
+      - 5432:5432
 
 networks:
   postgres:
