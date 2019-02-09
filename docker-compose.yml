@@ -9,6 +9,8 @@ services:
       - ASANA_ACCESS_TOKEN=${ASANA_ACCESS_TOKEN}
       - ASANA_PROJECT_GID=${ASANA_PROJECT_GID}
       - ASANA_CUSTOM_FIELD_GID=${ASANA_CUSTOM_FIELD_GID}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - REPORT_URL=${REPORT_URL}
     networks:
       - postgres
   postgres:

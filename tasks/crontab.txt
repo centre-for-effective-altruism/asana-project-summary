@@ -1,1 +1,2 @@
 * * * * * /root/gettasks.sh >> /var/log/gettasks.log
+0 16 * * 1-5 /root/pingslack.sh >> /var/log/pingslack.log
