@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 read -d '' JSON_PAYLOAD << EOF
 {
