@@ -1,3 +1,9 @@
 #!/bin/sh
 
-docker exec -it amicrogenesis_postgres_1 psql -U postgres
+ENV_FILE=../.env
+if [ -e $ENV_FILE ]
+    then
+        export $(cat $ENV_FILE | xargs)
+fi
+
+docker exec -it "$(echo $POSTGRES_NETWORK)_1" psql -U postgres

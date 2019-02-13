@@ -3,7 +3,7 @@
 BEGIN;
 
 SELECT
-  gid, name, created_at, completed_at, value
+  gid, name, created_at, completed_at, microgenes, partial_completion
 FROM public.tasks WHERE FALSE;
 
 SELECT
