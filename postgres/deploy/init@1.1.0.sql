@@ -1,9 +1,25 @@
+-- Deploy amicrogenesis:init to pg
+
 BEGIN;
 
-ALTER TABLE tasks RENAME COLUMN microgenes TO value;
-ALTER TABLE tasks DROP COLUMN partial_completion;
+CREATE TABLE tasks (
+  gid BIGINT PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMPTZ,
+  completed_at TIMESTAMPTZ,
+  value DOUBLE PRECISION NOT NULL DEFAULT 0
+);
 
-CREATE OR REPLACE FUNCTION generate_summary()
+CREATE TABLE daily_summary (
+  summary_date DATE PRIMARY KEY DEFAULT CURRENT_DATE,
+  total DOUBLE PRECISION,
+  incomplete DOUBLE PRECISION,
+  complete DOUBLE PRECISION,
+  last_updated TIMESTAMPTZ
+);
+
+
+CREATE FUNCTION generate_summary()
 RETURNS daily_summary AS $$
   INSERT INTO daily_summary
   SELECT

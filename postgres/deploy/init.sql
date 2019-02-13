@@ -2,26 +2,8 @@
 
 BEGIN;
 
--- TODO; how to migrate
-CREATE TABLE tasks (
-  gid BIGINT PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ,
-  completed_at TIMESTAMPTZ,
-  microgenes DOUBLE PRECISION NOT NULL DEFAULT 0,
-  partial_completion DOUBLE PRECISION NOT NULL DEFAULT 0
-);
-
--- TODO; how does this handle weird removals / adjustments etc
--- TODO; doc
-CREATE TABLE daily_summary (
-  summary_date DATE PRIMARY KEY DEFAULT CURRENT_DATE,
-  total DOUBLE PRECISION,
-  incomplete DOUBLE PRECISION,
-  complete DOUBLE PRECISION,
-  last_updated TIMESTAMPTZ
-);
-
+ALTER TABLE tasks RENAME COLUMN value TO microgenes;
+ALTER TABLE tasks ADD COLUMN microgenes DOUBLE PRECISION NOT NULL DEFAULT 0;
 
 CREATE FUNCTION generate_summary()
 RETURNS daily_summary AS $$
@@ -47,5 +29,3 @@ RETURNS daily_summary AS $$
     last_updated = EXCLUDED.last_updated
   RETURNING *;
 $$ LANGUAGE SQL VOLATILE;
-
-COMMIT;

@@ -2,7 +2,9 @@
 %project=amicrogenesis
 
 init 2019-02-06T23:36:30Z Sam Deere <dev@colophonemes.com> # Scaffold microgenes table
-@v1.0.0 2019-02-07T03:17:12Z Sam Deere <dev@colophonemes.com> # Tag first releast
+@v1.0.0 2019-02-07T03:17:12Z Sam Deere <dev@colophonemes.com> # Tag first releas
 
 summary_latest 2019-02-09T00:15:05Z Sam Deere <dev@colophonemes.com> # Summarise the daily summary table by only showing data for the most recent update
 @1.1.0 2019-02-09T00:18:48Z Sam Deere <dev@colophonemes.com> # Add summary_latest table
+
+init [init@1.1.0] 2019-02-13T23:01:17Z JP Addison <jpaddison@shadowfax.local> # generate_summary includes partial
