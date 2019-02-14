@@ -1,4 +1,4 @@
--- Deploy amicrogenesis:init to pg
+-- Revert amicrogenesis:init from pg
 
 BEGIN;
 
