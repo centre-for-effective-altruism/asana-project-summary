@@ -13,6 +13,7 @@ services:
       - REPORT_URL=${REPORT_URL}
     networks:
       - postgres
+      - browserless
   postgres:
     build: ./postgres
     volumes:
@@ -22,7 +23,12 @@ services:
     environment:
       - PGPASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - 5432:5432
+      - 5431:5432
+  browserless:
+    image: browserless/chrome
+    networks:
+      - browserless
 
 networks:
   postgres:
+  browserless:
