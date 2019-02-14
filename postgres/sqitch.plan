@@ -8,3 +8,4 @@ summary_latest 2019-02-09T00:15:05Z Sam Deere <dev@colophonemes.com> # Summarise
 @1.1.0 2019-02-09T00:18:48Z Sam Deere <dev@colophonemes.com> # Add summary_latest table
 
 init [init@1.1.0] 2019-02-14T00:00:08Z JP Addison <jpaddison@shadowfax.local> # Summary function uses partial
+@1.2.0 2019-02-14T00:37:33Z JP Addison <jpaddison@shadowfax.local> # Partial completion
