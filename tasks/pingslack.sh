@@ -1,5 +1,7 @@
 #!/bin/sh
 
+TIMESTAMP=`date '+%Y_%m_%d__%H_%M_%S'`
+TMPFILE=/tmp/amicrogenesis.png
 read -d '' PUPPETEER_PAYLOAD << EOF
 {
   "url": "$REPORT_URL",
@@ -17,9 +19,10 @@ curl -s -X POST \
   browserless:3000/screenshot \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
-  -d "$PUPPETEER_PAYLOAD" > /tmp/amicrogenesis.png
+  -d "$PUPPETEER_PAYLOAD" > $TMPFILE
 
-IMAGE_URL=$(curl --upload-file /tmp/amicrogenesis.png https://transfer.sh/amicrogenesis.png)
+B2_UPLOAD=$(b2 upload-file --noProgress amicrogenesis $TMPFILE "amicrogenesis-$TIMESTAMP.png")
+IMAGE_URL=$(echo "$B2_UPLOAD" | head -1 | sed -r 's/URL by file name: (.+)$/\1/')
 
 read -d '' JSON_PAYLOAD << EOF
 {
@@ -35,3 +38,5 @@ read -d '' JSON_PAYLOAD << EOF
 EOF
 
 curl -X POST -H 'Content-type: application/json' --data "$JSON_PAYLOAD" $SLACK_WEBHOOK_URL
+
+rm $TMPFILE

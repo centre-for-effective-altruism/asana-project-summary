@@ -1,6 +1,8 @@
 FROM alpine
 
-RUN apk --update --no-cache add jq curl postgresql-client
+RUN apk --update --no-cache add jq curl postgresql-client py2-pip
+
+RUN pip install b2
 
 WORKDIR /root
 
