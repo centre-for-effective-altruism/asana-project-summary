@@ -23,7 +23,9 @@ Most of the work happens in `./tasks/amicrogenesis.sh`. This:
   - These instructions are generally meant to be followed after running docker compose up
   - You can edit the scripts to put echo statements, they should hot-reload
   - You might want 3 terminals: docker compose up logs, one in the /tasks directory and one in the /postgres directory
+  - After dockerfile change run compose build again
 - Install docker app on your mac
+- In the project root, run docker compose build
 - In the project root, run docker compose up
 - In a separate terminal, in /postgres run ./psql to test your ability to connect to the db
  - Verify that there's nothing there yet by running \d

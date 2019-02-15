@@ -18,7 +18,7 @@ read -d '' JQ_PROJECTS << EOF
   . + {
     value: .custom_fields |
       .[] |
-      select(.gid == \"$ASANA_MICROGENE_FIELD_GID\") |
+      select(.gid == \"$ASANA_VALUE_FIELD_GID\") |
       .number_value|(. // 0)
   } |
   . + {
