@@ -34,3 +34,43 @@ Most of the work happens in `./tasks/amicrogenesis.sh`. This:
  - If you ever want to undo this, run ./sqitch revert
 - In /tasks run `docker exec -it asana-project-summary_tasks_1 /bin/sh` to enter the tasks docker container
  - Run ./gettasks.sh to test whether you can get things from the project
+
+## Deploy
+
+[SSH into the AWS EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) (you'll need the keyfile for authentication)
+
+```sh
+# create ssh tunnel
+ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
+# move to project directory
+cd asana-project-summary
+# stop the running project
+docker-compose down
+# pull latest changes
+git pull
+# rebuild docker images
+docker-compose build
+# restart the project in detached mode
+docker-compose up -d
+# update db if necessary
+cd ./postgres
+./sqitch deploy --verify
+cd ..
+```
+
+### Deploy troubleshooting
+
+#### `docker-compose build` permissions error
+
+Because we mount directories _within_ the project, Docker may create some files that we don't have permission to modify. This may cause rebuilds to fail:
+
+```
+PermissionError: [Errno 13] Permission denied: '/path/to.file'
+[12313] Failed to execute script docker-compose
+```
+
+The remedy is to make sure that ownership is set correctly for those files:
+
+```
+sudo chown -R ec2-user:docker /path/to/file
+```

@@ -3,6 +3,8 @@
 **/log
 **/.data
 tasks/projects.sql
+tasks/.*
+tasks/b2_cli.log
 node_modules
 npm-debug.log
 .env
