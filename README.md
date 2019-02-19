@@ -41,7 +41,7 @@ Most of the work happens in `./tasks/amicrogenesis.sh`. This:
 
 ```sh
 # create ssh tunnel
-ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
+ssh -i /path/my-key-pair.pem ec2-user@<AWS-IP-ADDRESS> 
 # move to project directory
 cd asana-project-summary
 # stop the running project
