@@ -2,7 +2,7 @@ BEGIN;
 
 WITH project_json (doc) as (
    values
-    (:'projects'::json)
+    ('{{tasks}}'::json)
 )
 INSERT INTO tasks (gid, name, created_at, completed_at, value, partial_completion)
 select p.*
